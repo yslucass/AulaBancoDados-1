@@ -13,8 +13,10 @@ async function connectDB() {
   try {
     await client.connect();
     console.log('Connected to MongoDB');
-    const db = client.db('matriculadb');
-    collection = db.collection('matriculas');
+
+    const db = client.db('nome_do_banco');
+    collection = db.collection('nome_da_coleção');
+
   } catch (err) {
     console.error('Failed to connect to MongoDB', err);
   }
@@ -53,7 +55,7 @@ app.get('/matriculas/:id', async (req, res) => {
     const id = req.params.id;
     const newId =  new ObjectId(id);
 
-    
+    //complete o código
 
     if (!matricula) {
       res.status(404).json({ message: 'Matrícula não encontrada' });
