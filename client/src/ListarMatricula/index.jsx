@@ -12,7 +12,7 @@ export default function ReadMatriculas() {
         const data = await response.json();
         setMatriculas(data);
       } catch (error) {
-        console.error('Erro ao buscar as matrículas:', error);
+        console.error('Erro ao buscar os carros:', error);
       }
     };
 
@@ -27,37 +27,37 @@ export default function ReadMatriculas() {
       if (response.ok) {
 
         setMatriculas(matriculas.filter((matricula) => matricula._id !== id));
-        alert('Matrícula excluída com sucesso!');
+        alert('Carro excluída com sucesso!');
       } else {
-        alert('Erro ao excluir matrícula.');
+        alert('Erro ao excluir o carro.');
       }
     } catch (error) {
-      console.error('Erro ao excluir matrícula:', error);
+      console.error('Erro ao excluir o carro:', error);
     }
   };
 
   return (
     <div className='container'>
-      <h2>Lista de Matrículas</h2>
+      <h2>Lista de Carros</h2>
       <table  className="table-container" border="1">
         <thead>
           <tr>
-            <th>Código Matrícula</th>
-            <th>Nome do Aluno</th>
-            <th>Turma</th>
-            <th>Curso</th>
+            <th>Código do Carro</th>
+            <th>Nome do Carro</th>
+            <th>Marca</th>
+            <th>Preço</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {matriculas.map((matricula) => (
-            <tr key={matricula._id}>
-              <td>{matricula._id}</td>
-              <td>{matricula.aluno}</td>
-              <td>{matricula.turma}</td>
-              <td>{matricula.curso}</td>
+          {matriculas.map((carros) => (
+            <tr key={carros._id}>
+              <td>{carros._id}</td>
+              <td>{carros.aluno}</td>
+              <td>{carros.turma}</td>
+              <td>{carros.curso}</td>
               <td>
-                <button onClick={() => handleDelete(matricula._id)}>Excluir</button>
+                <button onClick={() => handleDelete(carros._id)}>Excluir</button>
               </td>
             </tr>
           ))}
@@ -66,3 +66,10 @@ export default function ReadMatriculas() {
     </div>
   );
 }
+
+
+db.carros.insertOne({
+  carro: "Camaro",
+  marca: "Chevrolet",
+  preco: "R$560.000"
+})

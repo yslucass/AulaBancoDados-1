@@ -11,7 +11,7 @@ export default function UpdateMatricula() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const atualizacao = { aluno, turma, curso };
+    const atualizacao = { carro, marca, preco };
 
     try {
       const response = await fetch(`http://localhost:5000/matriculas/${id}`, {
@@ -22,49 +22,49 @@ export default function UpdateMatricula() {
         body: JSON.stringify(atualizacao),
       });
       if (response.ok) {
-        alert('Matrícula atualizada com sucesso!');
+        alert('Carro atualizado com sucesso!');
         navigate("/matriculas");
       } else {
-        alert('Erro ao atualizar matrícula.');
+        alert('Erro ao atualizar carros.');
       }
     } catch (error) {
-      console.error('Erro ao atualizar matrícula:', error);
+      console.error('Erro ao atualizar carros:', error);
     }
   };
 
   return (
     <div className='container'>
     <form  className="form-container" onSubmit={handleSubmit}>
-      <h2>Atualizar Matrícula</h2>
+      <h2>Atualizar Carros</h2>
       <input
         type="text"
-        placeholder="ID da Matrícula"
+        placeholder="ID do carro"
         value={id}
         onChange={(e) => setId(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Nome do Aluno"
-        value={aluno}
+        placeholder="Nome do Carro"
+        value={carro}
         onChange={(e) => setAluno(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Turma"
-        value={turma}
+        placeholder="Marca"
+        value={marca}
         onChange={(e) => setTurma(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Curso"
-        value={curso}
+        placeholder="Preço"
+        value={preco}
         onChange={(e) => setCurso(e.target.value)}
         required
       />
-      <button type="submit">Atualizar Matrícula</button>
+      <button type="submit">Atualizar Carro</button>
     </form>
     </div>
   );

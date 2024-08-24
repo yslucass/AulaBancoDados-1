@@ -11,7 +11,7 @@ export default function CreateMatricula() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const novaMatricula = { aluno, turma, curso };
+    const novaMatricula = { carro, marca, preco };
 
     try {
       const response = await fetch('http://localhost:5000/matriculas', {
@@ -38,29 +38,29 @@ export default function CreateMatricula() {
   return (
     <div className='container'>
     <form  className="form-container" onSubmit={handleSubmit}>
-      <h2>Criar Matrícula</h2>
+      <h2>Colocar Carro</h2>
       <input
         type="text"
-        placeholder="Nome do Aluno"
-        value={aluno}
+        placeholder="Nome do Carro"
+        value={carro}
         onChange={(e) => setAluno(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Turma"
-        value={turma}
+        placeholder="Marca"
+        value={marca}
         onChange={(e) => setTurma(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Curso"
-        value={curso}
+        placeholder="Preço"
+        value={preco}
         onChange={(e) => setCurso(e.target.value)}
         required
       />
-      <button type="submit">Criar Matrícula</button>
+      <button type="submit">Colocar Carro ao banco de dados.</button>
     </form>
     </div>
   );
