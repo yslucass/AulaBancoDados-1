@@ -9,7 +9,7 @@ export default function Home() {
                 <Link to="/matricula/cadastrar" className="card">
                     <div>Registrar Carro</div>
                 </Link>
-                <Link to="/matriculas" className="card">
+                <Link to="/carros" className="card">
                     <div>Lista de Carros</div>
                 </Link>
                 <Link to="/matriculas/alterar" className="card">
