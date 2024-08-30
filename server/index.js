@@ -29,11 +29,11 @@ app.use(express.json());
 
 app.post('/carros', async (req, res) => {
   try {
-    const novaMatricula = req.body;
+    const novoCarros = req.body;
 
-    const result = await collection.insertOne(novaMatricula)
+    const result = await collection.insertOne(novoCarros)
     
-    res.status(201).json({ message: 'Carro criada com sucesso', matriculaId: result.insertedId });
+    res.status(201).json({ message: 'Carro criada com sucesso', carrosId: result.insertedId });
   } catch (err) {
     res.status(500).json({ message: 'Erro ao criar carro', error: err });
   }
@@ -43,7 +43,8 @@ app.get('/carros', async (req, res) => {
   try {
 
     const carros = await collection.find().toArray();
-    res.status(200).json(matriculas);
+
+    res.status(200).json(carros);
   } catch (err) {
     res.status(500).json({ message: 'Erro ao buscar os carros', error: err });
   }
@@ -56,12 +57,12 @@ app.get('/carros/:id', async (req, res) => {
     const id = req.params.id;
     const newId =  new ObjectId(id);
 
-    //complete o código
+    const matricula = await collection.findOne({ _id: newId });
 
-    if (!matricula) {
+    if (!carros) {
       res.status(404).json({ message: 'Carro não encontrado' });
     } else {
-      res.status(200).json(matricula);
+      res.status(200).json(carros);
     }
   } catch (err) {
     res.status(500).json({ message: 'Erro ao buscar carro', error: err });

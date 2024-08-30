@@ -1,32 +1,32 @@
 import { useEffect, useState } from 'react';
 import '../globals.css';
 
-export default function ReadMatriculas() {
-  const [matriculas, setMatriculas] = useState([]);
+export default function ReadCarros() {
+  const [carros, setCarros] = useState([]);
 
 
   useEffect(() => {
-    const fetchMatriculas = async () => {
+    const fetchCarros = async () => {
       try {
-        const response = await fetch('http://localhost:5000/matriculas');
+        const response = await fetch('http://localhost:5000/carros');
         const data = await response.json();
-        setMatriculas(data);
+        setCarros(data);
       } catch (error) {
         console.error('Erro ao buscar os carros:', error);
       }
     };
 
-    fetchMatriculas();
+    fetchCarros();
   }, []);
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/matriculas/${id}`, {
+      const response = await fetch(`http://localhost:5000/carros/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
 
-        setMatriculas(matriculas.filter((matricula) => matricula._id !== id));
+        setCarros(carros.filter((carros) => carros._id !== id));
         alert('Carro excluída com sucesso!');
       } else {
         alert('Erro ao excluir o carro.');
@@ -50,12 +50,12 @@ export default function ReadMatriculas() {
           </tr>
         </thead>
         <tbody>
-          {matriculas.map((carros) => (
+          {carros.map((carros) => (
             <tr key={carros._id}>
               <td>{carros._id}</td>
-              <td>{carros.aluno}</td>
-              <td>{carros.turma}</td>
-              <td>{carros.curso}</td>
+              <td>{carros.carro}</td>
+              <td>{carros.marca}</td>
+              <td>{carros.preco}</td>
               <td>
                 <button onClick={() => handleDelete(carros._id)}>Excluir</button>
               </td>
@@ -66,10 +66,3 @@ export default function ReadMatriculas() {
     </div>
   );
 }
-
-
-db.carros.insertOne({
-  carro: "Camaro",
-  marca: "Chevrolet",
-  preco: "R$560.000"
-})
